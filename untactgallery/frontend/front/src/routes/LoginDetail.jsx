@@ -1,0 +1,7 @@
+import React from "react";
+
+const LoginDetail = () => {
+  return <div> 여기는 로그인 페이지 </div>;
+};
+
+export default LoginDetail;
