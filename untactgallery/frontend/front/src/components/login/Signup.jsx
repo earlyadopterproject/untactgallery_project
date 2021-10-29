@@ -22,10 +22,11 @@
 // `;
 //
 // const Input = styled.input`
+//   text-align: center;
 //   max-width: 100%;
 //   padding: 10px 13px;
 //   background: #f9f9fa;
-//   color: #f03d4e;
+//   color: black;
 //   margin-bottom: 0.9rem;
 //   border-radius: 4px;
 //   outline: 0;
@@ -39,7 +40,7 @@
 //   }
 // `;
 //
-// const Button = styled.button`
+// const Button3 = styled.button`
 //   max-width: 100%;
 //   padding: 10px 13px;
 //   color: rgb(253, 249, 243);
@@ -59,7 +60,7 @@
 //   }
 // `;
 //
-// const Button1 = styled.button`
+// const Button4 = styled.button`
 //   max-width: 100%;
 //   padding: 10px 13px;
 //   color: rgb(253, 249, 243);
@@ -80,10 +81,14 @@
 // `;
 //
 // const handleClick = function(e) {
+//     const name = document.querySelector('[name=name]').value;
 //     const email = document.querySelector('[name=email]').value;
 //     const password = document.querySelector('[name=password]').value;
-//     // alert(email + password)
-//     const ajax = fetch(`http://localhost:10002/login-detail?email=${email}&password=${password}`)
+//     const habitation = document.querySelector('[name=habitation]').value;
+//     const tel = document.querySelector('[name=tel]').value;
+//     const sex = document.querySelector('[name=sex]').value;
+//
+//     const ajax = fetch(`http://localhost:10002/Signup?name=${name}&email=${email}&password=${password}&habitation=${habitation}&tel=${tel}&sex=${sex}`)
 //     ajax.then((res) => {
 //         return res.json();
 //     }).then((result) => {
@@ -99,6 +104,11 @@
 //         <Wrapper>
 //             <Form>
 //                 <Input
+//                     placeholder="이름"
+//                     type="name"
+//                     name="name" // 데이터베이스
+//                 />
+//                 <Input
 //                     placeholder="이메일"
 //                     type="email"
 //                     name="email"  // 데이터베이스
@@ -108,8 +118,23 @@
 //                     type="password"
 //                     name="password" // 데이터베이스
 //                 />
-//                 <Button onClick={handleClick}> Sign In </Button>
-//                 <Button1 onClick={() => history.push("Signup")}> Sign Up </Button1>
+//                 <Input
+//                     placeholder="거주지"
+//                     type="habitation"
+//                     name="habitation" // 데이터베이스
+//                 />
+//                 <Input
+//                     placeholder="전화번호"
+//                     type="tel"
+//                     name="tel" // 데이터베이스
+//                 />
+//                 <Input
+//                     placeholder="성별"
+//                     type="sex"
+//                     name="sex" // 데이터베이스
+//                 />
+//                 <Button3 onClick={handleClick}> Sign Up </Button3>
+//                 <Button4> Cancel </Button4>
 //             </Form>
 //         </Wrapper>
 //     );

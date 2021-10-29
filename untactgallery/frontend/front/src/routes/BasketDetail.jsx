@@ -1,9 +1,10 @@
 import React from 'react';
+import BusketList from "../components/basket/BusketList";
 
 const BasketDetail = () => {
     return (
         <div>
-            여기는 장바구니 페이지
+            <BusketList/>
         </div>
     );
 };

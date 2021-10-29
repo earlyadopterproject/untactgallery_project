@@ -8,8 +8,18 @@ const Container = styled.div`
   margin: 30px;
 `;
 
+const Box = styled.div`
+  display: flex;
+  background-color: red;
+  justify-content: center;
+`;
+
 const Product = () => {
-  return <Container>오늘의 작품</Container>;
+  return <Container>
+    <Box>
+      오늘의 작품
+    </Box>
+  </Container>;
 };
 
 export default Product;

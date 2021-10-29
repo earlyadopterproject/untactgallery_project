@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import SocialLogin from "../components/login/SocialLogin";
 
 const LoginDetail = () => {
-  return <div> 여기는 로그인 페이지 </div>;
+    return (
+        <div>
+            <SocialLogin/>
+        </div>
+    );
 };
 
 export default LoginDetail;
