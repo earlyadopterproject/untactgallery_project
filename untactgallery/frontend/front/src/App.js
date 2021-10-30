@@ -13,7 +13,6 @@ import LoginDetail from "./routes/LoginDetail";
 import Footer from "./common/Footer";
 import ProductDetail from "./routes/ProductDetail";
 import BasketDetail from "./routes/BasketDetail";
-import ProductPage from "./components/product/ProductPage";
 
 const Container = styled.div``;
 
@@ -28,7 +27,6 @@ function App() {
           <Route path="/login-detail" component={LoginDetail} />
           <Route path="/product-detail" component={ProductDetail} />
           <Route path="/basket-detail" component={BasketDetail} />
-          <Route path="/product" component={ProductPage} />
         </Switch>
         <Footer />
       </Router>
