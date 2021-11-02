@@ -57,7 +57,7 @@ const Header = () => {
                 <Box onClick={() => history.push("artist-detail")}>
                     작가
                 </Box>
-                <Box onClick={() => history.push("product-detail")}>
+                <Box onClick={() => history.push("board")}>
                     작품
                 </Box>
             </BoxWrapper>

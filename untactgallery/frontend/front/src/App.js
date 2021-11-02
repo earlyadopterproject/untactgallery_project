@@ -12,6 +12,8 @@ import Footer from "./common/Footer";
 import ProductDetail from "./routes/ProductDetail";
 import BasketDetail from "./routes/BasketDetail";
 import SignUpDetail from "./routes/SignUpDetail";
+import ListBoardComponent from "./components/product/ListBoardComponent";
+import CreateBoardComponent from "./components/product/CreateBoardComponent";
 
 const Container = styled.div``;
 
@@ -26,8 +28,10 @@ function App() {
           <Route path="/login-detail" component={LoginDetail} />
           <Route path="/product-detail" component={ProductDetail} />
           <Route path="/basket-detail" component={BasketDetail} />
-          <Route path="/board" component={BasketDetail} />
           <Route path="/signup" component={SignUpDetail}/>
+          <Route path = "/board" component = {ListBoardComponent}></Route>
+          <Route path = "/create-board" component = {CreateBoardComponent}></Route>
+
         </Switch>
         <Footer />
       </Router>

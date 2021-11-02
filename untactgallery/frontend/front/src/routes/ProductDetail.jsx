@@ -1,9 +1,10 @@
 import React from 'react';
+import ListBoardComponent from "../components/product/ListBoardComponent";
 
 const ProductDetail = () => {
     return (
         <div>
-            여기는 작품 페이지
+            작가
         </div>
     );
 };

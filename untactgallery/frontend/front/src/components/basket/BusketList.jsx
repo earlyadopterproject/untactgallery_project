@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import BoardService from '../../service/BoardService';
 import styled from 'styled-components';
-import {getElement} from "bootstrap/js/src/util";
-
 
 const Container = styled.div`
   justify-content: center;
@@ -19,10 +17,10 @@ const Pont1 = styled.th`
 `;
 
 const Button = styled.td`
-align-content: center;
+  align-content: center;
   display: flex;
   justify-content: center;
-  
+
 `;
 const Paybtn = styled.button`
   display: inline;
@@ -37,15 +35,14 @@ class BusketList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            boards: []
+            busket: []
         }
     }
 
 
-
     componentDidMount() {
-        BoardService.getBoards().then((res) => {
-            this.setState({boards: res.data});
+        BoardService.getBasket().then((res) => {
+            this.setState({busket: res.data});
         });
     }
 
@@ -66,14 +63,16 @@ class BusketList extends Component {
                         </thead>
                         <tbody>
                         {
-                            this.state.boards.map(
-                                board =>
-                                    <tr key={board.id}>
-                                        <Pont1> {board.product} </Pont1>
-                                        <Pont1> {board.cost} </Pont1>
-                                        <Pont1> {board.paystate} </Pont1>
+                            this.state.busket.map(
+                                busket =>
+                                    <tr key={busket.id}>
+                                        <Pont1> {busket.product} </Pont1>
+                                        <Pont1> {busket.cost} </Pont1>
+                                        <Pont1> {busket.paystate} </Pont1>
                                         <Button>
-                                        <Paybtn> 결제 </Paybtn>
+                                            <Paybtn>
+                                                결제
+                                            </Paybtn>
                                         </Button>
                                     </tr>
                             )
