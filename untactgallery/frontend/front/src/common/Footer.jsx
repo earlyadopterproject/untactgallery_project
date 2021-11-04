@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import cardimg from "../img/header.PNG"
 
 const Container = styled.div`
   width: 100vw;
-  height: 30px;
-  background-image: url(${cardimg});
+  height: 100px;
+  background-color: #81B622;
+;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,6 +17,8 @@ const MemberWrapper = styled.div`
   margin: 7px;
 `;
 const Member = styled.div`
+  font-family: "NanumSquare";
+  color: white;
   display: flex;
   align-items: center;
   margin: 7px;

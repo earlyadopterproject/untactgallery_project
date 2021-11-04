@@ -1,40 +1,40 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import cardimg from "../img/header.PNG"
+import Button from "./Button";
 
 const Container = styled.div`
   width: 100vw;
-  padding: 30px 0px;
+  padding: 10px 0px;
   height: 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-image: url(${cardimg});
-  background-size: cover;
+  background-color: #81B622;
   gap: 15px;
 `;
 
 const BoxWrapper = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 30px;
+  font-family: "NanumSquare";
+  font-size: 14pt;
   justify-content: center;
   align-items: center;
 `;
 
 const Logo = styled.div`
-  width: 50px;
+  font-family: "DancingScript";
+  font-size: 18pt;
+  width: auto;
   height: 50px;
-  background-color : red;
-  
 `;
 
 const Box = styled.div`
-  width: 50px;
+  width: auto;
   height: 50px;
-  background-color: red;
+  color: white;
   font-display: center;
-  font-size: 9pt;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,25 +47,25 @@ const Header = () => {
       <BoxWrapper>
         <Logo>
           <Box onClick={() => history.push("/")}>
-            로고
+            GUREUM GALLERY
           </Box>
         </Logo>
       </BoxWrapper>
       <BoxWrapper>
         <Box onClick={() => history.push("artist-detail")}>
-            작가
+            ARTIST
         </Box>
         <Box onClick={() => history.push("product-detail")}>
-            작품
+            ARTWORK
         </Box>
       </BoxWrapper>
       <BoxWrapper>
-        <Box onClick={() => history.push("basket-detail")}>
-            장바구니
-        </Box>
-        <Box onClick={() => history.push("login-detail")}>
-            로그인
-        </Box>
+        <Button onClick={() => history.push("basket-detail")}>
+            CART
+        </Button>
+        <Button onClick={() => history.push("login-detail")}>
+            LOGIN
+        </Button>
       </BoxWrapper>
     </Container>
   );
