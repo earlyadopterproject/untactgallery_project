@@ -1,77 +1,94 @@
 package com.adopter.gallery.controller;
 
-import java.util.Date;
-import java.util.Map;
-
+import com.adopter.gallery.exception.ResourceNotFoundException;
 import com.adopter.gallery.model.Product;
-import com.adopter.gallery.service.ProductService;
+import com.adopter.gallery.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 
 
 @CrossOrigin(origins = "http://localhost:10001")
 @RestController
+@RequestMapping("api/product")
 public class ProductController {
-	
-	@Autowired
-	private ProductService boardService;
-	
-	// get paging board 
-	@GetMapping("/board")
-	public ResponseEntity<Map> getAllBoards(@RequestParam(value = "p_num", required=false) Integer p_num) {
-		if (p_num == null || p_num <= 0) p_num = 1;
-		
-		return boardService.getPagingBoard(p_num);
-	}
-	
-	// get all board 
-//	@GetMapping("/board")
-//	public List<Board> getAllBoards() {
-//		
-//		return boardService.getAllBoard();
-//	}
+    @Autowired
+    private ProductRepository productRepository;
 
-	// create board
-	@PostMapping("/board")
-	public Product createBoard(@RequestBody Product board) {
-		board.setCreatedTime(new Date());
-		System.out.println("@PostMapping(\"/board\")");
-		System.out.println(board.toString());
-		return boardService.createBoard(board);
-	}
-	
-	// get board
-	@GetMapping("/board/{no}")
-	public ResponseEntity<Product> getBoardByNo(
-			@PathVariable Integer no) {
-		
-		return boardService.getBoard(no);
-	}
-	
-	// update board
-	@PutMapping("/board/{no}")
-	public ResponseEntity<Product> updateBoardByNo(
-			@PathVariable Integer no, @RequestBody Product board){
-		
-		return boardService.updateBoard(no, board);
-	}
-	
-	// delete board
-	@DeleteMapping("/board/{no}")
-	public ResponseEntity<Map<String, Boolean>> deleteBoardByNo(
-			@PathVariable Integer no) {
-		
-		return boardService.deleteBoard(no);
-	}
-	
-	
+    @GetMapping
+    public List<Product> getAllProduct() {
+        return productRepository.findAll();
+    }
+
+    @PostMapping
+    public Product createProduct(
+        @ModelAttribute Product product
+        ) {
+//        String path = "D:/untactgallery_project/untactgallery/payment/src/main/resources/static/";
+        String path = this.getClass().getResource("").getPath();
+        path = path.substring(0, path.indexOf("/com"));
+        path = path + "/static/";
+
+        System.out.println(product);
+        MultipartFile file = product.getFile();
+        System.out.println(path);
+
+        File dir = new File(path);
+        if(!dir.isDirectory()) {
+            dir.mkdirs();
+        }
+
+        try {
+            file.transferTo(new File(path + file.getOriginalFilename()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        product.setFileinfo(file.getOriginalFilename());
+        product.setCreatetime(new Date());
+        return productRepository.save(product);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Product> getProductId(@PathVariable long id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not exist with id" + id));
+        return ResponseEntity.ok(product);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable long id, @RequestBody Product product) {
+        Product updateProduct = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
+
+        updateProduct.setName(product.getName());
+        updateProduct.setProduct_type(product.getProduct_type());
+        updateProduct.setInfo(product.getInfo());
+        updateProduct.setSize_width(product.getSize_width());
+        updateProduct.setSize_hight(product.getSize_hight());
+        updateProduct.setPrice(product.getPrice());
+        productRepository.save(updateProduct);
+
+        return ResponseEntity.ok(updateProduct);
+    }
+
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable long id) {
+
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
+
+        productRepository.delete(product);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    }
+
 }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import ProductService from "../../service/ProductService";
 import {Link} from 'react-router-dom'
 import styled from "styled-components";
@@ -16,8 +16,6 @@ const Container = styled.tbody`
   display: block;
   justify-content: center;
   align-items: center;
-  padding-bottom: 30px;
-  padding-top: 30px;
 `;
 
 const TableWrapper = styled.table`
@@ -43,13 +41,12 @@ const Table1 = styled.th`
 `;
 
 
-const ListProduct = () => {
+const DetailProduct = () => {
 
     const [product, setProduct] = useState([])
 
     useEffect(() => {
-
-        getAllProduct();
+        getAllProduct()
     }, [])
 
     const getAllProduct = () => {
@@ -61,34 +58,54 @@ const ListProduct = () => {
         })
     }
 
+    const deleteProduct = (productId) => {
+        ProductService.deleteProduct(productId).then((response) => {
+            getAllProduct();
+
+        }).catch(error => {
+            console.log(error);
+        })
+
+    }
+
     return (
         <Container className="container">
             <Text className="text-center"> 작품 리스트 </Text>
-            <Link to="/add-employee" className="btn btn-primary mb-2"> 작품 추가하기 </Link>
             <TableWrapper>
                 <thead>
-                <Table1> 작품</Table1> {/* name */}
-                <Table1> 사진</Table1> {/* fileinfo */}
-                <Table1> 가격</Table1> {/* price */}
+                <Table1> 작품 명</Table1> {/* name */}
+                <Table1> 사진</Table1> {/* file */}
+                <Table1> 가격</Table1> {/* pricwe */}
                 <Table1> 결제 상태</Table1> {/* product_status */}
+                <Table1> 크기 </Table1> {/* createtime */}
+                <Table1> 작품 종류</Table1> {/* createtime */}
                 <Table1> 게시 일</Table1> {/* createtime */}
-
+                <Table1> 수정 일</Table1> {/* createtime */}
+                <Table1> 수정 및 삭제</Table1> {/* createtime */}
                 </thead>
                 <tbody>
                 {
                     product.map(
                         product =>
                             <tr key={product.id}>
-                                <Table>
-                                    <Link class="btn btn-outline-light"
-                                          to={`/product-detail/${product.id}`}> {product.name} </Link>
-                                </Table>
-                                <Table>
+                                <Table> {product.name} </Table>
+                                <Table >
                                     <Image src={"http://localhost:10002/" + product.fileinfo}></Image>
                                 </Table>
                                 <Table>{product.price}</Table>
                                 <Table>{product.product_status}</Table>
+                                <Table>{product.size_hight} * {product.size_width}</Table>
+                                <Table>{product.product_type}</Table>
                                 <Table>{product.createtime}</Table>
+                                <Table>{product.updatetime}</Table>
+
+                                <Table>
+                                    <Link class="btn btn-outline-light"
+                                          to={`/edit-employee/${product.id}`}>Update</Link>
+                                    <button className="btn btn-outline-light" onClick={() => deleteProduct(product.id)}
+                                            style={{marginLeft: "9px"}}> Delete
+                                    </button>
+                                </Table>
                             </tr>
                     )
                 }
@@ -98,4 +115,4 @@ const ListProduct = () => {
     );
 };
 
-export default ListProduct;
+export default DetailProduct;

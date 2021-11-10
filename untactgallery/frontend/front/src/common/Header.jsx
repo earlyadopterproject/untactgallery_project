@@ -5,14 +5,12 @@ import cardimg from "../img/header.PNG"
 import logo from "../img/untact.png"
 
 const Container = styled.div`
-  width: 100vw;
-  padding: 30px 0px;
+  padding: 30px;
   height: 50px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-    //background-image: url(${cardimg});
-  background-color: beige;
+  background-color: black;
   background-size: cover;
   gap: 15px;
 `;
@@ -33,10 +31,10 @@ const Logo = styled.div`
 `;
 
 const Box = styled.div`
-  width: 50px;
+  width: auto;
   height: 50px;
-  background-color: red;
-  font-size: 9pt;
+  color: white;
+  font-size: 15pt;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,7 +55,7 @@ const Header = () => {
                 <Box onClick={() => history.push("artist-detail")}>
                     작가
                 </Box>
-                <Box onClick={() => history.push("board")}>
+                <Box onClick={() => history.push("product")}>
                     작품
                 </Box>
             </BoxWrapper>

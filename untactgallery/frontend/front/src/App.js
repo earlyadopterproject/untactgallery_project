@@ -11,11 +11,14 @@ import LoginDetail from "./routes/LoginDetail";
 import Footer from "./common/Footer";
 import BasketDetail from "./routes/BasketDetail";
 import SignUpDetail from "./routes/SignUpDetail";
-import CreateProduct from "./components/product/CreateProduct";
 import ListProduct from "./components/product/ListProduct";
-import ProductDetail from "./components/product/ProductDetail";
+import AddProduct from "./components/product/AddProduct";
+import BackImage from "./img/cool-background.png";
+import DetailProduct from "./components/product/DetailProduct";
 
-const Container = styled.div``;
+const Container = styled.div`
+    background-color: gray;
+`;
 
 function App() {
     return (
@@ -28,9 +31,10 @@ function App() {
                     <Route path="/login-detail" component={LoginDetail}/>
                     <Route path="/basket-detail" component={BasketDetail}/>
                     <Route path="/signup" component={SignUpDetail}/>
-                    <Route path="/board" component={ListProduct}></Route>
-                    <Route path="/create-board/:no" component={CreateProduct}></Route>
-                    <Route path="/read-board/:no" component={ProductDetail}></Route>
+                    <Route path="/product" component={ListProduct}></Route>
+                    <Route path="/add-employee" component={AddProduct}></Route>
+                    <Route path="/edit-employee/:id" component={AddProduct}></Route>
+                    <Route path="/product-detail/:id" component={DetailProduct}></Route>
                 </Switch>
                 <Footer/>
             </Router>

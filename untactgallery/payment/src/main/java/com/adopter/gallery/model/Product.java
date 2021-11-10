@@ -1,45 +1,58 @@
 package com.adopter.gallery.model;
 
+
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@Table(name = "board")
+@Table(name = "product")
 @Getter
 @Setter
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer no;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
-	@Column(name = "type")
-	private String type;
+	@Column(name = "name")
+	private String name;
 	
-	@Column(name = "title")
-	private String title;
+	@Column(name = "info")
+	private String info;
 	
-	@Column(name = "contents")
-	private String contents;
+	@Column(name = "size_width")
+	private String size_width;
 	
-	@Column(name = "member_no")
-	private String memberNo;
+	@Column(name = "size_hight")
+	private String size_hight;
 	
-	@Column(name = "created_time")
-	private Date createdTime;
+	@Column(name = "product_type")
+	private String product_type;
 	
-	@Column(name = "updated_time")
-	private Date updatedTime;
+	@Column(name = "product_status")
+	private String product_status;
+
+	@Column(name = "price")
+	private Integer price;
+
+	@Column(name = "createtime")
+	private Date createtime;
+
+	@Column(name = "updatetime")
+	private Date updatetime;
+
+	@JsonIgnore
+	@Transient
+	private MultipartFile file;
+
+	@Column(name = "file")
+	private String fileinfo;
 
 }
