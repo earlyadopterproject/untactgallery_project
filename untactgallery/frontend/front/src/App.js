@@ -27,14 +27,14 @@ function App() {
                 <Header/>
                 <Switch>
                     <Route path="/" exact component={Main}/>
-                    <Route path="/artist-detail" component={ArtistDetail}/>
-                    <Route path="/login-detail" component={LoginDetail}/>
-                    <Route path="/basket-detail" component={BasketDetail}/>
-                    <Route path="/signup" component={SignUpDetail}/>
-                    <Route path="/product" component={ListProduct}></Route>
-                    <Route path="/add-employee" component={AddProduct}></Route>
-                    <Route path="/edit-employee/:id" component={AddProduct}></Route>
-                    <Route path="/product-detail/:id" component={DetailProduct}></Route>
+                    <Route path="/artist-detail" exact component={ArtistDetail}/>
+                    <Route path="/login-detail" exact component={LoginDetail}/>
+                    <Route path="/basket-detail" exact component={BasketDetail}/>
+                    <Route path="/signup" exact component={SignUpDetail}/>
+                    <Route path="/product" exact component={ListProduct}></Route>
+                    <Route path="/add-employee" exact component={AddProduct}></Route>
+                    <Route path="/edit-employee/:id" exact component={AddProduct}></Route>
+                    <Route path="/product-detail/:id" exact component={DetailProduct}></Route>
                 </Switch>
                 <Footer/>
             </Router>

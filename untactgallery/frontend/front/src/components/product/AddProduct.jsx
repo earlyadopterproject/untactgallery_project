@@ -14,6 +14,7 @@ const AddProduct = () => {
     const [product_type, setproduct_type] = useState('')
     const [size_hight, setsize_hight] = useState('')
     const [size_width, setsize_width] = useState('')
+    const [file, setfile] = useState('')
 
     const history = useHistory();
     const {id} = useParams();
@@ -32,6 +33,9 @@ const AddProduct = () => {
         // const product = {name, info, price, product_type, size_hight, size_width}
 
         if (id) {
+            const file = document.querySelector('input[name=file]').files[0];
+            console.log(file)
+            product.append("file", file);
             ProductService.updateProduct(id, product).then((response) => {
                 history.push('/product')
             }).catch(error => {
@@ -65,6 +69,8 @@ const AddProduct = () => {
             setprice(response.data.price)
             setsize_hight(response.data.size_hight)
             setsize_width(response.data.size_width)
+            setfile(response.data.file)
+
         }).catch(error => {
             console.log(error)
         })
@@ -173,11 +179,15 @@ const AddProduct = () => {
                                         type="file"
                                         name="file"
                                         className="form-control"
+                                        onChange={(e) => setfile(e.target.value)}
                                     >
                                     </input>
                                 </div>
 
-                                <button className="btn btn-success" onClick={(e) => saveOrUpdateProduct(e)}>Submit
+                                <button className="btn btn-success" onClick={(e) => {
+                                    saveOrUpdateProduct(e);
+                                    e.preventDefault();
+                                }}>Submit
                                 </button>
                                 <Link to="/product" className="btn btn-danger"> Cancel </Link>
                             </form>

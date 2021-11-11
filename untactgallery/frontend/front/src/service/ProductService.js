@@ -24,7 +24,15 @@ class ProductService{
     }
 
     updateProduct(productId, product){
-        return axios.put(PRODUCT_BASE_REST_API_URL + '/' +productId, product);
+        // return axios.put(PRODUCT_BASE_REST_API_URL + '/' +productId, product);
+        return axios({
+            url: PRODUCT_BASE_REST_API_URL + '/' +productId, product,
+            method: 'put',
+            data: product,
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
     }
 
     deleteProduct(productId){

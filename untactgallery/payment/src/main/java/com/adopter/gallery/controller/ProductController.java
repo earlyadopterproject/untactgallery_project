@@ -37,9 +37,7 @@ public class ProductController {
         path = path.substring(0, path.indexOf("/com"));
         path = path + "/static/";
 
-        System.out.println(product);
         MultipartFile file = product.getFile();
-        System.out.println(path);
 
         File dir = new File(path);
         if(!dir.isDirectory()) {
@@ -63,7 +61,21 @@ public class ProductController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable long id, @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(@PathVariable long id, @ModelAttribute Product product) {
+
+        String path = this.getClass().getResource("").getPath();
+        path = path.substring(0, path.indexOf("/com"));
+        path = path + "/static/";
+
+        MultipartFile file = product.getFile();
+
+
+        try {
+            file.transferTo(new File(path + file.getOriginalFilename()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Product updateProduct = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
 
@@ -73,6 +85,7 @@ public class ProductController {
         updateProduct.setSize_width(product.getSize_width());
         updateProduct.setSize_hight(product.getSize_hight());
         updateProduct.setPrice(product.getPrice());
+        updateProduct.setFileinfo(file.getOriginalFilename());
         productRepository.save(updateProduct);
 
         return ResponseEntity.ok(updateProduct);

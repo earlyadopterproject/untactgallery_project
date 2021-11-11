@@ -80,7 +80,7 @@ const ArtInfo = styled.div`
   align-items: center;
   margin: 0 auto;
   width: auto;
-  gap: 25px;
+  gap: 60px;
 `;
 
 const ArtFragment = styled.div`

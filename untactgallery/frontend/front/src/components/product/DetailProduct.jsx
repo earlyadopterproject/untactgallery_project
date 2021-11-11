@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ProductService from "../../service/ProductService";
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import styled from "styled-components";
 
 const Image = styled.img`
@@ -46,12 +46,14 @@ const DetailProduct = () => {
     const [product, setProduct] = useState([])
 
     useEffect(() => {
-        getAllProduct()
+        getProductById()
     }, [])
 
-    const getAllProduct = () => {
-        ProductService.getAllProduct().then((response) => {
-            setProduct(response.data)
+    const {id} = useParams();
+
+    const getProductById = () => {
+        ProductService.getProductById(id).then((response) => {
+            setProduct(response.data);
             console.log(response.data);
         }).catch(error => {
             console.log(error);
@@ -60,7 +62,7 @@ const DetailProduct = () => {
 
     const deleteProduct = (productId) => {
         ProductService.deleteProduct(productId).then((response) => {
-            getAllProduct();
+            getProductById();
 
         }).catch(error => {
             console.log(error);
@@ -84,9 +86,6 @@ const DetailProduct = () => {
                 <Table1> 수정 및 삭제</Table1> {/* createtime */}
                 </thead>
                 <tbody>
-                {
-                    product.map(
-                        product =>
                             <tr key={product.id}>
                                 <Table> {product.name} </Table>
                                 <Table >
@@ -108,7 +107,7 @@ const DetailProduct = () => {
                                 </Table>
                             </tr>
                     )
-                }
+
                 </tbody>
             </TableWrapper>
         </Container>
