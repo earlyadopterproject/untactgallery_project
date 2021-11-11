@@ -13,6 +13,7 @@ import LoginDetail from "./routes/LoginDetail";
 import Footer from "./common/Footer";
 import ProductDetail from "./routes/ProductDetail";
 import BasketDetail from "./routes/BasketDetail";
+import "./App.css";
 
 const Container = styled.div``;
 
