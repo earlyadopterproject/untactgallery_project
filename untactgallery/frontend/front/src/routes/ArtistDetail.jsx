@@ -1,7 +1,10 @@
 import React from "react";
+import ArtistPage from "../components/artist/ArtistPage";
 
 const ArtistDetail = () => {
-  return <div> 여기는 작가페이지 </div>;
+    return <div>
+      <ArtistPage/>
+    </div>;
 };
 
 export default ArtistDetail;

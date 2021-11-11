@@ -1,92 +1,173 @@
-import React from "react";
-import styled from "styled-components";
-import cardimg from "../../img/header.PNG";
+import React, { useState, useEffect } from 'react';
+// import { API } from '../../../config';
+import styled, { css } from 'styled-components';
 
-const Container = styled.div`
-  width: 91vw;
-  height: 300px;
-  background-color: green;
-  text-align: center;
-  margin: 30px 30px;
-`;
+const NewAtists = () => {
+  const [artData, setArtData] = useState([]);
+  const [numIdx, setNumIdx] = useState(-1);
+  const [hover, setHover] = useState(false);
 
-const CardWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 15px;
-`;
+  useEffect(() => {
+    // fetch(`${API}/artists/new`)
+    fetch('/data/NewAtistsData.json')
+        .then(res => res.json())
+        .then(data => {
+          setArtData(data.artists);
+        });
+  }, []);
 
-const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-basis: 20%;
-  height: 250px;
-  border-radius: 8px;
-  background-color: skyblue;
-  transition: 1.5s ease-in-out all;
-  gap: 20px;
-  &:hover {
-    transform: rotateY(720deg);
-  }
-`;
+  const idxHandler = index => {
+    setNumIdx(index);
+    setHover(!hover);
+  };
 
-const Profile = styled.div`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-image: url(${cardimg});
-`;
-
-const Name = styled.div`
-  font-size: 27px;
-`;
-
-const Intro = styled.div`
-  font-size: 11px;
-`;
-
-const Major = styled.div`
-  font-size: 15px;
-`;
-
-const Details = styled.div``;
-// Card 나중에 mapping 시키기
-const NewArtist = () => {
   return (
-    <Container>
-      신규작가
-      <CardWrapper>
-        <Card>
-          <Profile />
-          <Name> 이 동건</Name>
-          <Major> 소묘 </Major>
-          <Intro> 소묘 작가 이동건 입니다.</Intro>
-        </Card>
-        <Card>
-          <Profile/>
-          <Name> 김 영석</Name>
-          <Major> 풍경화 </Major>
-          <Intro> 풍경화 작가 김영석 입니다.</Intro>
-        </Card>
-        <Card>
-          <Profile />
-          <Name> 이 동윤</Name>
-          <Major> 채색 </Major>
-          <Intro> 채색 작가 이동윤 입니다.</Intro>
-        </Card>
-        <Card>
-          <Profile />
-          <Name> 유 해식</Name>
-          <Major> 조각 </Major>
-          <Intro> 조각 작가 유해식 입니다.</Intro>
-        </Card>
-
-      </CardWrapper>
-    </Container>
+      <NewAtistsInfo>
+        <Line />
+        <TitleL>신규작가</TitleL>
+        <ArtInfo>
+          {artData.map((artinfo, idx) => {
+            const props = {
+              key: artinfo.id,
+              hover: hover,
+              colorHover: numIdx === idx,
+              onMouseEnter: () => idxHandler(idx),
+              onMouseLeave: () => idxHandler(-1),
+            };
+            return (
+                <ArtFragment key={idx}>
+                  <Liner />
+                  <ImgBox imageUrl={artinfo.thumbnail_url}>
+                    <Hover {...props} />
+                    <Shadow />
+                  </ImgBox>
+                  <ArtName {...props}>
+                    <NameBox />
+                    <Name>{artinfo.name}</Name>
+                  </ArtName>
+                </ArtFragment>
+            );
+          })}
+        </ArtInfo>
+      </NewAtistsInfo>
   );
 };
 
-export default NewArtist;
+const NewAtistsInfo = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 100px 0;
+  background-color: #eee;
+`;
+
+const Line = styled.div`
+  position: absolute;
+  top: -40px;
+  height: 80px;
+  width: 2px;
+  background-color: #d5a770;
+`;
+
+const TitleL = styled.h1`
+  font-size: 50px;
+`;
+
+const ArtInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: auto;
+  gap: 25px;
+`;
+
+const ArtFragment = styled.div`
+  position: relative;
+  margin-top: 60px;
+  cursor: pointer;
+`;
+
+const Liner = styled.div`
+  position: absolute;
+  top: 10px;
+  left: -10px;
+  background-color: #d5a770;
+  height: 85px;
+  width: 30px;
+`;
+
+const ImgBox = styled.div`
+  position: relative;
+  width: 280px;
+  height: 400px;
+  background-image: url(${props => props.imageUrl});
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+`;
+
+const Hover = styled.div`
+  position: absolute;
+  width: 315px;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  transition: 0.5s;
+
+  ${props => {
+  if (props.colorHover) {
+    return css`
+        background-color: #D5A770;
+        opacity: 0.7;
+      `;
+  } else {
+    return css`
+        opacity: 0;
+      `;
+  }
+}}
+  z-index: 10;
+`;
+
+const Shadow = styled.div`
+  box-shadow: inset 0 -111px 103px -30px rgb(0 0 0 / 80%);
+  position: absolute;
+  width: 315px;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+`;
+
+const ArtName = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 315px;
+  transition: 0.5s;
+  bottom: ${props => (props.colorHover ? '20px' : '0')};
+  left: 0;
+  z-index: 10;
+`;
+
+const NameBox = styled.div`
+  position: absolute;
+  bottom: 100px;
+  left: 80px;
+  width: 50px;
+  height: 50px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+`;
+
+const Name = styled.p`
+  position: absolute;
+  bottom: 85px;
+  color: #fff;
+  font-size: 50px;
+`;
+export default NewAtists;
