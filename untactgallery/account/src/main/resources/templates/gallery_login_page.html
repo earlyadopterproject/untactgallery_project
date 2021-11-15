@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>login</title>
+</head>
+<body>
+<h1>Login</h1> <hr>
+
+
+<form action="/user/login" method="POST">
+  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+  <a href="/oauth2/authorization/kakao"> <img th:src="@{/img/kakao_login_medium_narrow.png}"> </a><br>
+  <a href="/oauth2/authorization/naver"> <img th:src="@{/img/naver_login_medium_narrow.png}"> </a><br>
+  <a href="/oauth2/authorization/google"> <img th:src="@{/img/google_login_medium_narrow.png}"> </a><br>
+  email : <input type="text" name="username"> <br>
+  password : <input type="password" name="password"> <br>
+  <button type="submit">Login</button>
+
+</form> <br>
+
+
+<a class="underlineHover" href="/user/signup_page">Go to join! →</a>
+</body>
+</html>
