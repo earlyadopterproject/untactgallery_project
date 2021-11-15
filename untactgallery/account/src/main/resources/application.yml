@@ -38,9 +38,9 @@ spring:
 
 
           google:
-             client-id: 1076708367051-khjm1i3l1e4hj51r7knmsc1bj1qeu1ct.apps.googleusercontent.com
-             client-secret: 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
-             scope: profile, email
+            client-id: 1076708367051-khjm1i3l1e4hj51r7knmsc1bj1qeu1ct.apps.googleusercontent.com
+            client-secret: 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
+            scope: profile, email
 
 
 
