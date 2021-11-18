@@ -32,8 +32,8 @@ function App() {
                     <Route path="/basket-detail" exact component={BasketDetail}/>
                     <Route path="/signup" exact component={SignUpDetail}/>
                     <Route path="/product" exact component={ListProduct}></Route>
-                    <Route path="/add-employee" exact component={AddProduct}></Route>
-                    <Route path="/edit-employee/:id" exact component={AddProduct}></Route>
+                    <Route path="/add-product" exact component={AddProduct}></Route>
+                    <Route path="/edit-product/:id" exact component={AddProduct}></Route>
                     <Route path="/product-detail/:id" exact component={DetailProduct}></Route>
                 </Switch>
                 <Footer/>

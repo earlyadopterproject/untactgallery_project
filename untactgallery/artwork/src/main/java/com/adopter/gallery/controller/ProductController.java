@@ -22,6 +22,8 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
+
+
     @GetMapping
     public List<Product> getAllProduct() {
         return productRepository.findAll();
@@ -29,9 +31,7 @@ public class ProductController {
 
     @PostMapping
     public Product createProduct(
-        @ModelAttribute Product product
-        ) {
-//        String path = "D:/untactgallery_project/untactgallery/payment/src/main/resources/static/";
+        @ModelAttribute Product product ) {
         String path = this.getClass().getResource("").getPath();
         path = path.substring(0, path.indexOf("/com"));
         path = path + "/static/";

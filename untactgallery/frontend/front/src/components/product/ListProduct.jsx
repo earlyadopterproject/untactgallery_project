@@ -12,6 +12,7 @@ const Image = styled.img`
 const Text = styled.h2`
   color: white;
 `;
+
 const Container = styled.tbody`
   display: block;
   justify-content: center;
@@ -25,6 +26,7 @@ const TableWrapper = styled.table`
   justify-content: center;
   align-items: center;
 `;
+
 const Table = styled.td`
   height: 100px;
   width: 100vh;
@@ -41,7 +43,6 @@ const Table1 = styled.th`
   border: 1px solid;
   text-align: center;
 `;
-
 
 const ListProduct = () => {
 
@@ -64,7 +65,7 @@ const ListProduct = () => {
     return (
         <Container className="container">
             <Text className="text-center"> 작품 리스트 </Text>
-            <Link to="/add-employee" className="btn btn-primary mb-2"> 작품 추가하기 </Link>
+            <Link to="/add-product" className="btn btn-primary mb-2"> 작품 추가하기 </Link>
             <TableWrapper>
                 <thead>
                 <Table1> 작품</Table1> {/* name */}

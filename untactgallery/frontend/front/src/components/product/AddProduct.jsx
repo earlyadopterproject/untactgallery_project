@@ -201,5 +201,4 @@ const AddProduct = () => {
         </Container>
     );
 };
-
 export default AddProduct;

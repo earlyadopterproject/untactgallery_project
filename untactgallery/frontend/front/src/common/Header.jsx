@@ -20,12 +20,13 @@ const BoxWrapper = styled.div`
   gap: 15px;
   justify-content: center;
   align-items: center;
+  font-size: 16pt;
 `;
 
 const Logo = styled.div`
-  width: 50px;
-  height: 50px;
-  background-image: url(${logo});
+  width: auto;
+  height: auto;
+  color: white;
   background-size: contain;
   background-repeat: no-repeat;
 `;
@@ -34,7 +35,6 @@ const Box = styled.div`
   width: auto;
   height: 50px;
   color: white;
-  font-size: 15pt;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,22 +48,22 @@ const Header = () => {
         <Container>
             <BoxWrapper>
                 <Logo onClick={() => history.push("/")}>
-
+                    CLOUD Gallery
                 </Logo>
             </BoxWrapper>
             <BoxWrapper>
-                <Box onClick={() => history.push("artist-detail")}>
+                <Box onClick={() => history.push("/artist-detail")}>
                     작가
                 </Box>
-                <Box onClick={() => history.push("product")}>
+                <Box onClick={() => history.push("/product")}>
                     작품
                 </Box>
             </BoxWrapper>
             <BoxWrapper>
-                <Box onClick={() => history.push("basket-detail")}>
+                <Box onClick={() => history.push("/basket-detail")}>
                     장바구니
                 </Box>
-                <Box onClick={() => history.push("login-detail")}>
+                <Box onClick={() => history.push("/login-detail")}>
                     로그인
                 </Box>
             </BoxWrapper>

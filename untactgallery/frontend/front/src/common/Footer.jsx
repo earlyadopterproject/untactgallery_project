@@ -3,7 +3,9 @@ import styled from "styled-components";
 import cardimg from "../img/header.PNG"
 
 const Container = styled.div`
-  padding:50px;
+  position: fixed;
+  bottom: 0px;
+  padding:30px;
   width: 100%;
   height: 30px;
   background-color: black;
@@ -32,6 +34,7 @@ const Footer = () => {
       <Member> 이동건 </Member>
       <Member> 이동윤 </Member>
       <Member> 김영석 </Member>
+      <Member> 멘토 : 유해식</Member>
     </MemberWrapper>
   </Container>;
 };

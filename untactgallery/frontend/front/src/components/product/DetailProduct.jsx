@@ -60,10 +60,10 @@ const DetailProduct = () => {
         })
     }
 
-    const deleteProduct = (productId) => {
+     const deleteProduct = (productId) => {
         ProductService.deleteProduct(productId).then((response) => {
             getProductById();
-
+            window.location.replace("/product");
         }).catch(error => {
             console.log(error);
         })
@@ -100,10 +100,10 @@ const DetailProduct = () => {
 
                                 <Table>
                                     <Link class="btn btn-outline-light"
-                                          to={`/edit-employee/${product.id}`}>Update</Link>
-                                    <button className="btn btn-outline-light" onClick={() => deleteProduct(product.id)}
+                                          to={`/edit-product/${product.id}`}>Update</Link>
+                                    <Link className="btn btn-outline-light"  to={"/product"} onClick={() => deleteProduct(product.id)  }
                                             style={{marginLeft: "9px"}}> Delete
-                                    </button>
+                                    </Link>
                                 </Table>
                             </tr>
                     )

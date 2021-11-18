@@ -1,5 +1,6 @@
 import axios, {Axios} from "axios";
 
+// const PRODUCT_BASE_REST_API_URL = 'http://52.79.178.195:10002/api/product'
 const PRODUCT_BASE_REST_API_URL = 'http://localhost:10002/api/product'
 
 class ProductService{

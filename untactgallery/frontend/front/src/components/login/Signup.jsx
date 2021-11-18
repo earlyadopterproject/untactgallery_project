@@ -85,11 +85,10 @@ const handleClick = function(e) {
     const name = document.querySelector('[name=name]').value;
     const email = document.querySelector('[name=email]').value;
     const password = document.querySelector('[name=password]').value;
-    const habitation = document.querySelector('[name=habitation]').value;
-    const tel = document.querySelector('[name=tel]').value;
-    const sex = document.querySelector('[name=sex]').value;
+    const country = document.querySelector('[name=country]').value;
+    const p_number = document.querySelector('[name=p_number]').value;
 
-    const ajax = fetch(`http://localhost:10002/Signup?name=${name}&email=${email}&password=${password}&habitation=${habitation}&tel=${tel}&sex=${sex}`)
+    const ajax = fetch(`http://localhost:10002/signup?name=${name}&email=${email}&password=${password}&country=${country}&p_number=${p_number}`)
     ajax.then((res) => {
         return res.json();
     }).then((result) => {
@@ -121,18 +120,13 @@ const LoginPage = () => {
                 />
                 <Input
                     placeholder="거주지"
-                    type="habitation"
-                    name="habitation" // 데이터베이스
+                    type="country"
+                    name="country" // 데이터베이스
                 />
                 <Input
                     placeholder="전화번호"
-                    type="tel"
-                    name="tel" // 데이터베이스
-                />
-                <Input
-                    placeholder="성별"
-                    type="sex"
-                    name="sex" // 데이터베이스
+                    type="p_number"
+                    name="p_number" // 데이터베이스
                 />
                 <Button3 onClick={handleClick}> Sign Up </Button3>
                 <Button4 to="login-detail"> Cancel </Button4>
