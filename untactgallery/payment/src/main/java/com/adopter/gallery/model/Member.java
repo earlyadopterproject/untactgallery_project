@@ -31,6 +31,6 @@ public class Member {
     private Long p_number;
 
     @Column(name = "role")
-    private Long role;
+    private String role;
 
 }

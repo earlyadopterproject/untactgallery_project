@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes, createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import {Link, useHistory} from "react-router-dom";
 
 const Wrapper = styled.section`
@@ -96,10 +96,11 @@ const handleClick = function(e) {
     });
     e.preventDefault();
     e.stopPropagation();
+
+    return window.location.href="/login-detail"
 }
 
 const LoginPage = () => {
-    const history = useHistory();
     return (
         <Wrapper>
             <Form>

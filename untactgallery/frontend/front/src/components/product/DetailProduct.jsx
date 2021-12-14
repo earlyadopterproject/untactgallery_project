@@ -10,9 +10,12 @@ const Image = styled.img`
 `;
 
 const Text = styled.h2`
+  padding-bottom: 20px;
   color: white;
 `;
 const Container = styled.tbody`
+  padding-top: 30px;
+  padding-bottom: 33vh;
   display: block;
   justify-content: center;
   align-items: center;
@@ -72,7 +75,7 @@ const DetailProduct = () => {
 
     return (
         <Container className="container">
-            <Text className="text-center"> 작품 리스트 </Text>
+            <Text className="text-center"> 작품 : {product.name} </Text>
             <TableWrapper>
                 <thead>
                 <Table1> 작품 명</Table1> {/* name */}
@@ -100,13 +103,15 @@ const DetailProduct = () => {
 
                                 <Table>
                                     <Link class="btn btn-outline-light"
-                                          to={`/edit-product/${product.id}`}>Update</Link>
+                                          to={`/edit-product/${product.id}`}>수정</Link>
                                     <Link className="btn btn-outline-light"  to={"/product"} onClick={() => deleteProduct(product.id)  }
-                                            style={{marginLeft: "9px"}}> Delete
+                                            style={{marginLeft: "9px"}}> 삭제
+                                    </Link>
+                                    <Link className="btn btn-outline-light"  to={`/product-detail/${product.id}`} onClick={() => getProductById(product.id)}
+                                          style={{marginLeft: "9px"}}> 담기
                                     </Link>
                                 </Table>
                             </tr>
-                    )
 
                 </tbody>
             </TableWrapper>

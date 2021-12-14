@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import ProductService from "../../service/ProductService";
 import {Link} from 'react-router-dom'
 import styled from "styled-components";
@@ -15,9 +15,7 @@ const Text = styled.h2`
 
 const Container = styled.tbody`
   display: block;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 30px;
+  padding-bottom: 30vh;
   padding-top: 30px;
 `;
 
@@ -49,7 +47,6 @@ const ListProduct = () => {
     const [product, setProduct] = useState([])
 
     useEffect(() => {
-
         getAllProduct();
     }, [])
 

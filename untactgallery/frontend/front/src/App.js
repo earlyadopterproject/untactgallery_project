@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch,} from "react-router-dom";
 import Main from "./routes/Main";
 import Header from "./common/Header";
 import ArtistDetail from "./routes/ArtistDetail";
@@ -13,7 +9,6 @@ import BasketDetail from "./routes/BasketDetail";
 import SignUpDetail from "./routes/SignUpDetail";
 import ListProduct from "./components/product/ListProduct";
 import AddProduct from "./components/product/AddProduct";
-import BackImage from "./img/cool-background.png";
 import DetailProduct from "./components/product/DetailProduct";
 
 const Container = styled.div`
@@ -24,7 +19,7 @@ function App() {
     return (
         <Container>
             <Router>
-                <Header/>
+                <Header />
                 <Switch>
                     <Route path="/" exact component={Main}/>
                     <Route path="/artist-detail" exact component={ArtistDetail}/>

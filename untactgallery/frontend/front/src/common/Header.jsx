@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import {useHistory} from "react-router-dom";
-import cardimg from "../img/header.PNG"
-import logo from "../img/untact.png"
 
 const Container = styled.div`
   padding: 30px;
@@ -29,6 +27,9 @@ const Logo = styled.div`
   color: white;
   background-size: contain;
   background-repeat: no-repeat;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 const Box = styled.div`
@@ -39,11 +40,34 @@ const Box = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
+// 세션 스토리지에 따른 스타일 다르게 하기
+function Logging() {
+    const history = useHistory();
+    const log = sessionStorage.getItem("id");
+    if (log === null) {
+        return <Box  onClick={() => history.push("/login-detail")}> 로그인 </Box>;
+
+    }
+    else if (log != null) {
+        return <Box onClick={Logout}> 로그아웃 </Box>;
+    }
+}
+
+// 로그 아웃시 세션스토리지 삭제 및 새로고침
+function Logout() {
+    sessionStorage.removeItem("id");
+    return  window.location.replace("/");
+
+}
 
 const Header = () => {
     const history = useHistory();
+
     return (
         <Container>
             <BoxWrapper>
@@ -63,12 +87,9 @@ const Header = () => {
                 <Box onClick={() => history.push("/basket-detail")}>
                     장바구니
                 </Box>
-                <Box onClick={() => history.push("/login-detail")}>
-                    로그인
-                </Box>
+                {Logging()}
             </BoxWrapper>
         </Container>
     );
 };
-
 export default Header;

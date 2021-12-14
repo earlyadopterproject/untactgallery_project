@@ -4,7 +4,7 @@ import cardimg from "../img/header.PNG"
 
 const Container = styled.div`
   position: fixed;
-  bottom: 0px;
+  bottom: 0%;
   padding:30px;
   width: 100%;
   height: 30px;

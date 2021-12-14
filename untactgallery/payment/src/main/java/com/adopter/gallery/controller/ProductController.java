@@ -86,8 +86,9 @@ public class ProductController {
         updateProduct.setSize_hight(product.getSize_hight());
         updateProduct.setPrice(product.getPrice());
         updateProduct.setFileinfo(file.getOriginalFilename());
-        productRepository.save(updateProduct);
+        updateProduct.setUpdatetime(new Date());
 
+        productRepository.save(updateProduct);
         return ResponseEntity.ok(updateProduct);
     }
 

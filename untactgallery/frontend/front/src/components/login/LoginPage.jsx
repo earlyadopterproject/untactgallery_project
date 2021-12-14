@@ -1,6 +1,7 @@
 import React from 'react';
-import styled, { keyframes, createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import {route} from "express/lib/router";
 
 const Wrapper = styled.section`
   display: flex;
@@ -8,6 +9,8 @@ const Wrapper = styled.section`
   align-items: center;
   height: 100%;
   width: 100%;
+  padding-top: 10%;
+  padding-bottom: 15%;
 `;
 
 const Form = styled.form`
@@ -87,9 +90,20 @@ const handleClick = function(e) {
         return res.json();
     }).then((result) => {
         alert(result.msg);
+
+        // 로그인 성공일 때
+        if(result.code == 200) {
+            // localstorage 저장
+            // localStorage.setItem("id", email);
+            sessionStorage.setItem("id", email);
+            // const id = localStorage.getItem("id");
+            document.location.href="/";
+        }
+
     });
     e.preventDefault();
     e.stopPropagation();
+
 }
 
 const LoginPage = () => {

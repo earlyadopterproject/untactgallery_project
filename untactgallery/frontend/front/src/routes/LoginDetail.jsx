@@ -5,7 +5,7 @@ import LoginPage from "../components/login/LoginPage";
 const LoginDetail = () => {
     return (
         <div>
-            <SocialLogin/>
+            {/*<SocialLogin/>*/}
             <LoginPage/>
         </div>
     );

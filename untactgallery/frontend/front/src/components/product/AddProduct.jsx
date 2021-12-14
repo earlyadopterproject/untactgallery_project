@@ -30,8 +30,6 @@ const AddProduct = () => {
         product.append("size_hight", size_hight);
         product.append("size_width", size_width);
 
-        // const product = {name, info, price, product_type, size_hight, size_width}
-
         if (id) {
             const file = document.querySelector('input[name=file]').files[0];
             console.log(file)
@@ -41,23 +39,17 @@ const AddProduct = () => {
             }).catch(error => {
                 console.log(error)
             })
-
         } else {
             const file = document.querySelector('input[name=file]').files[0];
             console.log(file)
             product.append("file", file);
-
             ProductService.createProduct(product).then((response) => {
-
                 console.log(response.data)
-
                 history.push('/product');
-
             }).catch(error => {
                 console.log(error)
             })
         }
-
     }
 
     useEffect(() => {

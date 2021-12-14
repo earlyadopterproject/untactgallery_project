@@ -1,10 +1,10 @@
 import React from 'react';
-import BasketPage from "../components/basket/BasketList"
+import BusketList from "../components/basket/BusketList";
 
 const BasketDetail = () => {
     return (
         <div>
-            <BasketPage/>
+            <BusketList/>
 
         </div>
     );
